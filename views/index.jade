@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  h1 This data retrieved from the database MySQL
+  form(action='/save-to-Mongodb' method='POST')
+    table
+      tr
+      th NIP
+      th Name
+      th gender
+      th salary
+      th Action
+      -each emp in emplosql
+        tr
+        //td: input(type='checkbox' name="nip" value='#{emp.nip}')
+        td #{emp.nip}
+        td #{emp.name}
+        td #{emp.gender}
+        td #{emp.salary}
+        td: button(type='submit' name="nip" value='#{emp.nip}') Move
+
+    br
+  h1 This data retrieved from the database MongoDB
+  table
+    tr
+    th NIP
+    th Name
+    th gender
+    th salary
+    -each emplo in emploNosql
+      tr
+      td #{emplo.nip}
+      td #{emplo.name}
+      td #{emplo.gender}
+      td #{emplo.salary}
+      td: button(onclick="location.href='/delete/_id=#{emplo._id}'") Delete
